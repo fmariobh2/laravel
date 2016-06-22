@@ -79,7 +79,7 @@
                  placeholder="$0.00" required>
           <small class="text-danger"  ng-if="!formEmpleado.$pristine && formEmpleado.ingresos_anuales.$error.required">* Campo requerido</small>
         </div>
-        <button type="submit" class="btn btn-info" >
+        <button type="submit" class="btn btn-info" ng-disabled="!formEmpleado.$valid">
           <span ng-if="!loading"> Guardar</span>
           <span ng-if="loading">Guardando</span>
         </button>
