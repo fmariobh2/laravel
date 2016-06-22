@@ -70,7 +70,7 @@
           </tr>
           <tr ng-if="empleados.length==0">
             <td colspan="7"> 
-              <span> No ha registros agregados </span>
+              <span> No hay registros agregados </span>
             </td>
           </tr>
           <tr ng-repeat="item in empleados">
