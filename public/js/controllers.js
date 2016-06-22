@@ -39,7 +39,7 @@
               $scope.errors = data.errors;
               break;
             case true:
-              $window.location.href='/';
+              $window.location.href='/empleados_';
               break;
             }
             $scope.loading=false;

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     /*
@@ -68,5 +70,38 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function authenticate(Request $request)
+    {
+        Session::flush();
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $credentials = ['email' => $email, 'password' => $password ];
+
+        if (Auth::attempt($credentials, $request->input('remember')))
+        {
+            /*
+            if ($request->ajax())
+            {
+                return response()->json([
+                    'status' => true,
+                    'url' => Session::get('url.intended', url('home'))
+                ]);
+                }*/
+
+            return redirect('empleados_');
+
+        }else{
+            /* if ($request->ajax())
+            {
+                return response()->json([
+                    'status' => false,
+                    'error' => 'Usuario o contraseña incorrectos'
+                ]);
+            }*/
+            Session::flash('error_login', 'Usuario o contraseña incorrectos');
+            return redirect('login');
+        }
     }
 }

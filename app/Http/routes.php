@@ -11,15 +11,28 @@
 |
 */
 
-Route::get('/', function () {
-    return view('empleados/index');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/empleados_', function () {
+        return view('empleados/index');
+    });
+
+    Route::get('/empleados/create', 'EmpleadosController@create');
+    Route::get('/empleados/find', 'EmpleadosController@find');
+    Route::post('/empleados/find', 'EmpleadosController@findEmpleado');
+    Route::get('/empleados/{id}', 'EmpleadosController@show');
+    Route::get('/empleados', 'EmpleadosController@index');
+    Route::post('/empleados', 'EmpleadosController@store');
+
 });
 
-Route::get('/empleados/create', 'EmpleadosController@create');
-Route::get('/empleados/find', 'EmpleadosController@find');
-Route::post('/empleados/find', 'EmpleadosController@findEmpleado');
-Route::get('/empleados/{id}', 'EmpleadosController@show');
-Route::get('/empleados', 'EmpleadosController@index');
-Route::post('/empleados', 'EmpleadosController@store');
-
-
+Route::get('/', function () {
+    return view('login');
+});
+Route::get('/login', function () {
+    return view('login');
+});
+Route::post('/login', 'Auth\AuthController@authenticate');
+Route::get('/logout', function(){
+    \Auth::logout();
+    return redirect('/');
+});

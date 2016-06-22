@@ -37,6 +37,7 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
+            Hola {{ Auth::user()->nombre}}  | <a href="/logout">Salir</a>
           </ul>
         </nav>
         <h3 class="text-muted">Exámen <b>Pago fácil </b></h3>

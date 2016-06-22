@@ -71,7 +71,7 @@ class EmpleadosController extends Controller
             return view('empleados/show',compact('empleado'));
         }
         else{
-            return redirect('/');
+            return redirect('/empleados_');
         }
     }
 

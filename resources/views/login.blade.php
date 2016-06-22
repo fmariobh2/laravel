@@ -29,41 +29,29 @@
   </head>
 
   <body ng-controller="empleadosController">
-
+    
     <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="/">Inicio</a></li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">Exámen <b>Pago fácil </b></h3>
-      </div>
-
-      <h2>Empleados</h2>
-      <table class="table table-condensed" ng-init="listaEmpleados()">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Apellido paterno</th>
-            <th>Apellido materno</th>
-            <th>Fecha de nacimiento</th>
-            <th>Ingresos anuales</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in empleados">
-            <td>@{{ item.id}}</td>
-            <td>@{{ item.nombre }}</td>
-            <td>@{{ item.apellido_paterno }}</td>
-            <td>@{{ item.apellido_materno }}</td>
-            <td>@{{ item.fecha_nacimiento }}</td>
-            <td>@{{ item.ingresos_anuales }}</td>
-          </tr>
-
-        </tbody>
-      </table>
+        <div class="wrapper">
+          
+          <form method="post" action="login" name="Login_Form" class="form-signin">       
+              <h3 class="form-signin-heading">Bienvenido! Inicia sesión</h3>
+              <hr class="colorgraph"><br>
+              @if(Session::has('error_login') )
+              <div  class="alert alert-danger" >
+              {{ Session::get('error_login')}}
+              </div>
+              @endif
+              <div class="form-group">
+              <label>Nombre de usuario</label>
+              <input type="text" class="form-control" name="email" placeholder="introduce: examen" required="" autofocus="" />
+              </div>
+              <div class="form-group"> 
+              <label>Contraseña </label>
+              <input type="password" class="form-control" name="password" placeholder="introduce: examen" required=""/>          
+              </div>
+              <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Entrar</button>        
+          </form>     
+        </div>
 
       <footer class="footer">
         <p>&copy; 2016 Company, Inc.</p>
