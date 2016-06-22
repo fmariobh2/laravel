@@ -26,10 +26,16 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::get('/', function () {
-    return view('login');
+    if (Auth::check()) 
+        return redirect('empleados_');
+    else
+        return view('login');
 });
 Route::get('/login', function () {
-    return view('login');
+    if (Auth::check())
+        return redirect('empleados_');
+    else
+        return view('login');
 });
 Route::post('/login', 'Auth\AuthController@authenticate');
 Route::get('/logout', function(){
